@@ -196,17 +196,15 @@ call s:add_methods('app',['buffer_name'])
 
 function! s:BufNavCommands()
   command! -bar -nargs=* A  :call s:Alternate('<bang>',<f-args>)
-  command! -bar -nargs=* AE :call s:Alternate('E<bang>',<f-args>)
   command! -bar -nargs=* AL :call s:AlternateLayout('L<bang>',<f-args>)
   command! -bar -nargs=* AS :call s:Alternate('S<bang>',<f-args>)
-  command! -bar -nargs=* AV :call s:Alternate('V<bang>',<f-args>)
   command! -bar -nargs=* AT :call s:Alternate('T<bang>',<f-args>)
+  command! -bar -nargs=* AV :call s:Alternate('V<bang>',<f-args>)
   command! -bar -nargs=* R  :call s:Related('<bang>' ,<f-args>)
-  command! -bar -nargs=* RE :call s:Related('E<bang>',<f-args>)
   command! -bar -nargs=* RL :call s:RelatedLayout('E<bang>',<f-args>)
   command! -bar -nargs=* RS :call s:Related('S<bang>',<f-args>)
-  command! -bar -nargs=* RV :call s:Related('V<bang>',<f-args>)
   command! -bar -nargs=* RT :call s:Related('T<bang>',<f-args>)
+  command! -bar -nargs=* RV :call s:Related('V<bang>',<f-args>)
 endfunction
 
 function! s:djump(def)
@@ -305,11 +303,11 @@ function! s:define_navcommand(name, projection, ...) abort
   if name !~# '^[a-z]\+$'
     return s:error("E182: Invalid command name ".name)
   endif
-  for prefix in ['E', 'S', 'V', 'T', 'R', 'RS', 'RV', 'RT']
+  for prefix in ['E', 'S', 'T', 'V']
     exe 'command! -bar -bang -nargs=* ' .
           \ '-complete=customlist,'.s:sid.'CommandList ' .
           \ prefix . name . ' :execute s:CommandEdit(' .
-          \ string(s:sub(prefix, '^R', '') . "<bang>") . ',' .
+          \ string(prefix . "<bang>") . ',' .
           \ string(a:name) . ',' . string(a:projection) . ',<f-args>)' .
           \ (a:0 ? '|' . a:1 : '')
   endfor
@@ -354,22 +352,16 @@ function! s:findcmdfor(cmd)
   else
     let cmd = a:cmd
   endif
-  if cmd =~ '^\d'
-    let num = matchstr(cmd,'^\d\+')
-    let cmd = s:sub(cmd,'^\d+','')
-  else
-    let num = ''
-  endif
-  if cmd == '' || cmd == 'E' || cmd == 'F'
-    return num.'find'.bang
+  if cmd == '' || cmd == 'E'
+    return 'find'.bang
   elseif cmd == 'S'
-    return num.'sfind'.bang
+    return 'sfind'.bang
   elseif cmd == 'V'
-    return 'vert '.num.'sfind'.bang
+    return 'vert sfind'.bang
   elseif cmd == 'T'
-    return num.'tabfind'.bang
+    return 'tabfind'.bang
   else
-    return num.cmd.bang
+    return cmd.bang
   endif
 endfunction
 
