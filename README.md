@@ -10,6 +10,7 @@ Projections.vim is based on [rails.vim](https://github.com/tpope/vim-rails) proj
 - Usage
   - [Setup your projections config](#setup-your-projections-config)
   - [Special template placeholders](#special-template-placeholders)
+  - [Commands](#commands)
 
 ## Install using Pathogen
 
@@ -91,7 +92,7 @@ The plugin looks for a `projections.json` file in the root of your project (cwd)
         "command": "models",
         "alternate": "spec/models/%s.js",
         "related": "libs/controllers/%s_controller.js",
-        "reverse_layout": false,
+        "reverse_layout": true,
         "template": "model",
         "template_alternate": "spec",
         "template_related": "controller"
@@ -103,6 +104,16 @@ The plugin looks for a `projections.json` file in the root of your project (cwd)
       }
     }
     ```
+
+This json config is used to search for file patterns based off the key.  In this case any file matching `libs/models/*.js`.
+
+The `"command"` key defines the name of the `{command}`.  In this case it defines `:Emodels` amongst other commands.  See below for the full command list.
+
+The `"alternate"` and `"related"` key is used for a pattern for the all Alternate and Related commands like `:A` and `:R`.  See below for the full alternate and related command list.
+
+The `"template"`, `"template_alternate"`, and `"template_related"` keys all define the template key in the special root level `"templates"` key.  Templates are described further down.
+
+The `"reverse_layout"` key defines whether the alternate/related file will appear on the left side when running layout commands.
 
 ## Special template placeholders
 
@@ -119,6 +130,29 @@ Yields these template placeholders:
     %i => bar_baz       (singularize)
     %f => bar_baz       (file part)
     %% => %             (literal %)
+
+## Commands
+
+Opening files:
+
+    :Emodels foo/bar_baz
+
+    :E{command} {file}   (open file)
+    :S{command} {file}   (open file in split)
+    :T{command} {file}   (open file in tab)
+    :V{command} {file}   (open file in vert split)
+
+Opening alternate/related files:
+
+    :A      (open alternate file)
+    :AS     (open alternate file in split)
+    :AT     (open alternate file in tab)
+    :AV     (open alternate file in vert split)
+
+    :R      (open related file)
+    :RS     (open related file in split)
+    :RT     (open related file in tab)
+    :RV     (open related file in vert split)
 
 ## License
 
