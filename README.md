@@ -87,7 +87,6 @@ To update, open vim and run `:BundleInstall!` (notice the bang!)
 
 The plugin looks for a `projections.json` file in the root of your project (cwd).  No commands will be installed if it can't find a projections.json file.  Pasted below is a trivial example.
 
-    ```json
     {
       "libs/models/*.js": {
         "command": "models",
@@ -104,7 +103,6 @@ The plugin looks for a `projections.json` file in the root of your project (cwd)
         "controller":  "function(){\n  console.log('controller: %s,%S,%h,%p,%i,%f,%%')\n}\n"
       }
     }
-    ```
 
 This json config is used to search for file patterns based off the key.  In this case any file matching `libs/models/*.js`.
 
@@ -161,7 +159,6 @@ Opening alternate/related files:
 
     :Emodels apple!
 
-    ```json
     {
       "libs/models/*.js": {
         "command": "models",
@@ -171,7 +168,6 @@ Opening alternate/related files:
         "model": "function(){\n  console.log('model: %s,%S,%h,%p,%i,%f,%%')\n}\n"
       }
     }
-    ```
 
 This will grab the template from the `templates.model` key.  Awesome!
 
