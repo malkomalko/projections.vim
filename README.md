@@ -11,6 +11,7 @@ Projections.vim is based on [rails.vim](https://github.com/tpope/vim-rails) proj
   - [Setup your projections config](#setup-your-projections-config)
   - [Special template placeholders](#special-template-placeholders)
   - [Commands](#commands)
+  - [Templates and Layouts](#templates-and-layouts)
 
 ## Install using Pathogen
 
@@ -153,6 +154,43 @@ Opening alternate/related files:
     :RS     (open related file in split)
     :RT     (open related file in tab)
     :RV     (open related file in vert split)
+
+## Templates and Layouts
+
+`projections.vim` allows you to create files based off of templates.  To create a file, just add a `!` to the end of your command.
+
+    :Emodels apple!
+
+    ```
+    {
+      "libs/models/*.js": {
+        "command": "models",
+        "template": "model"
+      },
+      "templates": {
+        "model": "function(){\n  console.log('model: %s,%S,%h,%p,%i,%f,%%')\n}\n"
+      }
+    }
+    ```
+
+This will grab the template from the `templates.model` key.  Awesome!
+
+`projections.vim` also allows you to open up a layout.  A layout is a side by side view in a new tab placing your file and alternate/related file.  Think of opening up a spec and file in a split.
+
+This is opened in a new tab so it doesn't brake your existing window structure.  It's just a quick `:tabc` away to go back to your work.
+
+You have two choices for opening up a layout:
+
+    :AL   (open up the alternate layout)
+    :RV   (open up the related layout)
+
+It will give you an error if it can't find an alternate or related layout.
+
+If by chance you gave it a `template_alternate` or `template_related`, if the file does not exist, it will create it for you based off the template.  Rock and roll!
+
+As previously stated, you can also have the alternate or related file open up on the left side of the split with:
+
+    "reverse_layout": true
 
 ## License
 
