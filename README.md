@@ -8,7 +8,7 @@ Projections.vim is based on [rails.vim](https://github.com/tpope/vim-rails) proj
   - [Install using Pathogen](#install-using-pathogen)
   - [Install using Vundle](#install-using-vundle)
 - Usage
-  - [Setup your projections.json](#setup-your-projections.json)
+  - [Setup your projections config](#setup-your-projections-config)
 
 ## Install using Pathogen
 
@@ -80,7 +80,7 @@ Updating takes two steps:
 
 To update, open vim and run `:BundleInstall!` (notice the bang!)
 
-## Setup your projections.json
+## Setup your projections config
 
 The plugin looks for a `projections.json` file in the root of your project (cwd).  No commands will be installed if it can't find a projections.json file.  Pasted below is a trivial example.
 
