@@ -87,7 +87,7 @@ To update, open vim and run `:BundleInstall!` (notice the bang!)
 
 The plugin looks for a `projections.json` file in the root of your project (cwd).  No commands will be installed if it can't find a projections.json file.  Pasted below is a trivial example.
 
-    ```
+    ```json
     {
       "libs/models/*.js": {
         "command": "models",
@@ -161,7 +161,7 @@ Opening alternate/related files:
 
     :Emodels apple!
 
-    ```
+    ```json
     {
       "libs/models/*.js": {
         "command": "models",
