@@ -2,6 +2,14 @@
 
 Projections.vim is based on [rails.vim](https://github.com/tpope/vim-rails) projections, but allows you to use them for any language and project.
 
+## Table of Contents
+
+- Installation
+  - [Install using Pathogen](#install-using-pathogen)
+  - [Install using Vundle](#install-using-vundle)
+- Usage
+  - [Setup your projections.json](#setup-your-projections.json)
+
 ## Install using Pathogen
 
 This project uses rolling releases based on git commits, so pathogen is a
@@ -71,6 +79,29 @@ Updating takes two steps:
 3. Open vim and run `:BundleInstall`.
 
 To update, open vim and run `:BundleInstall!` (notice the bang!)
+
+## Setup your projections.json
+
+The plugin looks for a `projections.json` file in the root of your project (cwd).  No commands will be installed if it can't find a projections.json file.  Pasted below is a trivial example.
+
+    ```
+    {
+      "libs/models/*.js": {
+        "command": "models",
+        "alternate": "spec/models/%s.js",
+        "related": "libs/controllers/%s_controller.js",
+        "reverse_layout": false,
+        "template": "model",
+        "template_alternate": "spec",
+        "template_related": "controller"
+      },
+      "templates": {
+        "model": "function(){\n  console.log('model: %s,%S,%h,%p,%i,%f,%%')\n}\n"
+        "spec":  "function(){\n  console.log('spec: %s,%S,%h,%p,%i,%f,%%')\n}\n",
+        "controller":  "function(){\n  console.log('controller: %s,%S,%h,%p,%i,%f,%%')\n}\n",
+      }
+    }
+    ```
 
 ## License
 
