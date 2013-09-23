@@ -9,6 +9,7 @@ Projections.vim is based on [rails.vim](https://github.com/tpope/vim-rails) proj
   - [Install using Vundle](#install-using-vundle)
 - Usage
   - [Setup your projections config](#setup-your-projections-config)
+  - [Special template placeholders](#special-template-placeholders)
 
 ## Install using Pathogen
 
@@ -96,12 +97,28 @@ The plugin looks for a `projections.json` file in the root of your project (cwd)
         "template_related": "controller"
       },
       "templates": {
-        "model": "function(){\n  console.log('model: %s,%S,%h,%p,%i,%f,%%')\n}\n"
+        "model": "function(){\n  console.log('model: %s,%S,%h,%p,%i,%f,%%')\n}\n",
         "spec":  "function(){\n  console.log('spec: %s,%S,%h,%p,%i,%f,%%')\n}\n",
-        "controller":  "function(){\n  console.log('controller: %s,%S,%h,%p,%i,%f,%%')\n}\n",
+        "controller":  "function(){\n  console.log('controller: %s,%S,%h,%p,%i,%f,%%')\n}\n"
       }
     }
     ```
+
+## Special template placeholders
+
+This command:
+
+    :Emodels foo/bar_baz
+
+Yields these template placeholders:
+
+    %s => foo/bar_baz   (orig)
+    %S => BarBaz        (camel case)
+    %h => Bar baz       (humanized)
+    %p => bar_bazes     (pluralized)
+    %i => bar_baz       (singularize)
+    %f => bar_baz       (file part)
+    %% => %             (literal %)
 
 ## License
 
