@@ -534,6 +534,7 @@ function! s:Layout(type)
         return
       endif
     endif
+    silent execute 'tabe %'
     only!
     if a:type == 'alternate'
       AV
