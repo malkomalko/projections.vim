@@ -8,7 +8,7 @@ Projections.vim is based on [rails.vim](https://github.com/tpope/vim-rails) proj
   - [Install using Pathogen](#install-using-pathogen)
   - [Install using Vundle](#install-using-vundle)
 - Usage
-  - [Setup your projections config](#setup-your-projections-config)
+  - [Set up your projections config](#setup-your-projections-config)
   - [Special template placeholders](#special-template-placeholders)
   - [Commands](#commands)
   - [Templates and Layouts](#templates-and-layouts)
@@ -83,9 +83,9 @@ Updating takes two steps:
 
 To update, open vim and run `:BundleInstall!` (notice the bang!)
 
-## Setup your projections config
+## Set up your projections config
 
-The plugin looks for a `projections.json` file in the root of your project (cwd).  No commands will be installed if it can't find a projections.json file.  Pasted below is a trivial example.
+The plugin looks for a `projections.json` file in the root of your project (cwd).  No commands will be installed if it can't find a `projections.json` file.  Pasted below is a trivial example.
 
     {
       "libs/models/*.js": {
@@ -104,7 +104,7 @@ The plugin looks for a `projections.json` file in the root of your project (cwd)
       }
     }
 
-This json config is used to search for file patterns based off the key.  In this case any file matching `libs/models/*.js`.
+This JSON config is used to search for file patterns based off the key.  In this case any file matching `libs/models/*.js`.
 
 The `"command"` key defines the name of the `{command}`.  In this case it defines `:Emodels` amongst other commands.  See below for the full command list.
 
@@ -173,12 +173,12 @@ This will grab the template from the `templates.model` key.  Awesome!
 
 `projections.vim` also allows you to open up a layout.  A layout is a side by side view in a new tab placing your file and alternate/related file.  Think of opening up a spec and file in a split.
 
-This is opened in a new tab so it doesn't brake your existing window structure.  It's just a quick `:tabc` away to go back to your work.
+This is opened in a new tab so it doesn't break your existing window structure.  It's just a quick `:tabc` away to go back to your work.
 
 You have two choices for opening up a layout:
 
     :AL   (open up the alternate layout)
-    :RV   (open up the related layout)
+    :RL   (open up the related layout)
 
 It will give you an error if it can't find an alternate or related layout.
 
