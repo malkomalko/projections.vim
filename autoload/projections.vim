@@ -518,6 +518,10 @@ function! s:Layout(type)
           silent execute 'tabe %'
           only!
           execute cmd
+          let test_command = projections#app().projected('test_command')
+          if len(test_command) > 0
+            let t:test_command = test_command[0]
+          endif
           call s:ReverseLayout()
           return 0
         endif
@@ -533,6 +537,10 @@ function! s:Layout(type)
     endif
     if a:type == 'related'
       RV
+    endif
+    let test_command = projections#app().projected('test_command')
+    if len(test_command) > 0
+      let t:test_command = test_command[0]
     endif
     call s:ReverseLayout()
   else
