@@ -13,6 +13,16 @@ function! s:error(str)
   let v:errmsg = a:str
 endfunction
 
+function! s:initVariable(var, value)
+  if !exists(a:var)
+    exec 'let '.a:var.' = '."'".substitute(a:value, "'", "''", "g")."'"
+    return 1
+  endif
+  return 0
+endfunction
+
+call s:initVariable("g:projections_open_layout_in_tab", 1)
+
 function! s:autoload(...)
   if !exists("g:autoloaded_projections") && v:version >= 700
     runtime! autoload/projections.vim

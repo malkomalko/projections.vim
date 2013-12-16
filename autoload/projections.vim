@@ -501,6 +501,7 @@ function! s:Related(cmd)
 endfunction
 
 function! s:Layout(type)
+  let layout_cmd = g:projections_open_layout_in_tab ? "tabe" : "e"
   let file = projections#app().alternate(a:type)
   if empty(file)
     let file = projections#app().alternate('test')
@@ -515,7 +516,7 @@ function! s:Layout(type)
         else
           let projected = projections#app().template_for_pattern(opts.pattern,opts.root,'template_'.a:type)
           let cmd = projections#app().create_template(file,projected,'vsp')
-          silent execute 'tabe %'
+          silent execute layout_cmd . ' %'
           only!
           execute cmd
           let test_command = projections#app().projected('test_command')
@@ -530,7 +531,7 @@ function! s:Layout(type)
         return
       endif
     endif
-    silent execute 'tabe %'
+    silent execute layout_cmd . ' %'
     only!
     if a:type == 'alternate'
       AV
